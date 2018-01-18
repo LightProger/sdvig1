@@ -16,12 +16,11 @@
  * функцию.
  * ***********************************************************************/
 void rotate (int * a, unsigned size, int shift);		//сдвигаем массив
-void rotate1 (int * a, unsigned size, int shift);
 void prtarr (int a[], unsigned size);						//выводим на экран
 
 int main (void)
 {
-	int MAX = 4;										//размер массива
+	int MAX = 5;										//размер массива
 	int m[MAX];											//массив
 	int i;
 	int shift = -1;									//величина сдвига
@@ -33,11 +32,8 @@ int main (void)
 	}
 	for(i=0; i<MAX; i++){ m[i] = i+1; }			//заполняем массив
 	prtarr(m, MAX);									//выводим на экран
-	printf("\nпервый способ\n\n");
+	printf("\n");
 	rotate(m, MAX, shift);							//сдвигаем массив
-	printf("\nвторой способ\n\n");
-	for(i=0; i<MAX; i++){ m[i] = i+1; }			//заполняем массив
-	rotate1(m, MAX, shift);							//сдвигаем массив
 	return 0;
 }
 //-------------------------------------------------------------------------
@@ -63,35 +59,14 @@ void rotate (int * a, unsigned size, int shift)
 	{
 		for(i = 0; i < shift; i++)
 		{
-			tmp = a[0];
+		        tmp = a[0];
 			for(j = 0; j < size - 1; j++)
 			{
 				a[j] = a[j + 1];
-				prtarr(a, size);
 				a[j + 1] = tmp;
-				prtarr(a, size);
 			}
 		}
+		prtarr(a, size);
 	}
 	return;
-}
-//-------------------------------------------------------------------------
-void rotate1 (int * a, unsigned size, int shift)
-{
-	if (shift >= size) shift = shift % size;
-	if (shift > 0)
-	{
-		int tmp, i, j;
-		for(i=0; i<shift; i++)
-		{
-			tmp = a[0];
-			for(j=1; j<size; j++)
-			{
-				a[j-1] = a[j];
-				prtarr(a, size);
-			}
-			a[size-1] = tmp;
-			prtarr(a, size);
-		}
-	}
 }
